@@ -1,0 +1,84 @@
+﻿@model TicketManzano.Models.TipoUsuario
+
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Detalle Tipo de Usuario</h4>
+            @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@ @*Boton de la esquina para cerrarse*@
+        </div>
+        @*<form action="@Url.Action("Edit","TipoUsuario")" method="post">*@
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input type="hidden" id="id_tipousuario" name="id_tipousuario" value="@Model.id_tipousuario" />
+            <label> Nombre:</label>
+            <input type="text" id="nombretipo" name="nombre" value="@Model.nombretipo" class="form-control" />
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" id="editar" value="Editar" class="btn btn-primary" />
+        </div>
+        @*</form>*@
+    </div>
+</div>
+
+
+<script>
+
+
+    $('#editar').click(function (e) {
+        e.preventDefault();
+        let error = '';
+
+        if ($('#nombretipo').val().trim() === '')
+            error += 'Debe ingresar nombre \n';
+
+        if (error != '') {
+            swal('Error validación', error, 'error');
+        }
+        else
+        {
+            const data = {
+                id_tipousuario: $('#id_tipousuario').val(),
+                nombretipo: $('#nombretipo').val().trim()
+
+            }
+            //se enviarán los datos al controlador a través de ajax
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Edit")',
+                data: '{tipoUsuario:' + JSON.stringify(data) + '}',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (ok) {
+                    if (ok === '') {
+                        swal({
+                            title: 'Modificación correcta',
+                            text: 'Los datos se han guardado con éxito!',
+                            icon: 'success',
+                            button: 'Cerrar',
+                            closeOnClickOutside: false,
+                        }).then(function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();//recarga la página
+
+                            }
+                        });
+                    } else {
+                        swal('Error', ok, 'error');
+                    }
+                }
+            });
+        }
+    });
+
+
+
+
+</script>
+
