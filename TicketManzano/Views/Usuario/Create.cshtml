@@ -1,68 +1,76 @@
-﻿
+﻿@model TicketManzano.Models.Usuarios
 @{
     ViewBag.Title = "Create";
 }
 
 
-<div class="row wrapper border-bottom white-bg page-heading">
+@*<div class="row wrapper border-bottom white-bg page-heading">
     <h2>Crear Usuario</h2>
-</div>
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox-title">
-                <h3>Ingrese los datos del Usuario a crear</h3>
-            </div>
-            <div class="ibox-content">
+</div>*@
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Nombre:</label>
-                    <div class="col-10">
-                        <input type="text" name="nombre" id="nombre" class="form-control" />
+
+
+    <div class="col-lg-8">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Registro de Usuarios</h4>
+
+                <!-- Advanced Form Elements -->
+                <form>
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-10">
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="nombre" placeholder="Ejemplo: Juan">
+                                <label for="floatingInput">Nombres</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="apellido" placeholder="Ejemplo: Perez">
+                                <label for="floatingInput">Apellidos</label>
+                            </div>
+
+
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                                <label for="floatingInput">Correo Electrónico</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                <label for="floatingPassword">Contraseña</label>
+                            </div>
+
+
+                            
+
+                            <div class="form-floating mb-3">
+
+                                @Html.DropDownListFor(model => model.id_tipousuario, (SelectList)ViewBag.tipo, "-- Seleccione un tipo de usuario --", new { @class = "form-control" })
+
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Apellido:</label>
-                    <div class="col-10">
-                        <input type="text" name="nombre" id="apellido" class="form-control" />
+                    <div class="text-center">
+                        <input type="button" value="Limpiar" id="limpiar" class="btn btn-secondary" />
+                        <input type="button" value="Guardar" id="guardar" class="btn btn-primary" />
                     </div>
-                </div>
+                </form><!-- End General Form Elements -->
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">E-Mail:</label>
-                    <div class="col-10">
-                        <input type="email" name="email" id="CorreoElectronico" class="form-control" />
-                    </div>
-                </div>
-
-                               
-
-                <div class="form-group row">
-                    <label class="col-2 text-right">Contraseña:</label>
-                    <div class="col-10">
-                        <input type="password" name="pass" id="Contraseña" class="form-control" />
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <label class="col-2 text-right">Tipo Usuario:</label>
-                    <div class="col-10">
-                        <!--Helper de razor para select -->
-                        @Html.DropDownList("tipo", null, "Seleccione Usuario", htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-
-
-                <div class="text-center">
-                    <input type="button" value="Limpiar" id="limpiar" class="btn btn-secondary" />
-                    <input type="button" value="Guardar" id="guardar" class="btn btn-primary" />
-                </div>
             </div>
         </div>
+
     </div>
-</div>
+
+
+
+
+
+                
+
 <!-- sweetalert permite mostrar alertas más glamorosas -->
 <link href="~/Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 <link href="~/Content/plugins/select2/select2.min.css" rel="stylesheet" />

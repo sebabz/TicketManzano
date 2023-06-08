@@ -24,7 +24,7 @@ namespace TicketManzano.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.tipo = new SelectList(db.TipoUsuario, "id_tipo", "nombre");
+            ViewBag.tipo = new SelectList(db.TipoUsuario, "id_tipousuario", "nombretipo");
             return View();
         }
 
