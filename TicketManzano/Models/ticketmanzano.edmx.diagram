@@ -4,12 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ce19a07045e4400d8b4a330383a286ec" Name="Diagram1">
-        <EntityTypeShape EntityType="HelpdeskManzanoModel.Comentarios" Width="1.5" PointX="7.5" PointY="2.375" />
-        <EntityTypeShape EntityType="HelpdeskManzanoModel.Imagenes" Width="1.5" PointX="7.5" PointY="6.25" />
-        <EntityTypeShape EntityType="HelpdeskManzanoModel.Tickets" Width="1.5" PointX="5.25" PointY="5.75" />
-        <EntityTypeShape EntityType="HelpdeskManzanoModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="3.25" />
-        <EntityTypeShape EntityType="HelpdeskManzanoModel.Usuarios" Width="1.5" PointX="3" PointY="2.625" />
+      <Diagram DiagramId="ce19a07045e4400d8b4a330383a286ec" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.AsuntoTickets" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.Comentarios" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.Imagenes" Width="1.5" PointX="10.5" PointY="3.625" />
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.Tickets" Width="1.5" PointX="8.25" PointY="3" />
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.Usuarios" Width="1.5" PointX="3" PointY="3.125" />
+        <AssociationConnector Association="HelpdeskManzanoModel.FK_Tickets_AsuntoTickets" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" />

@@ -25,6 +25,7 @@ namespace TicketManzano.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AsuntoTickets> AsuntoTickets { get; set; }
         public virtual DbSet<Comentarios> Comentarios { get; set; }
         public virtual DbSet<Imagenes> Imagenes { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }

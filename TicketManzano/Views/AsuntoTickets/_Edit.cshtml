@@ -1,20 +1,20 @@
-﻿@model TicketManzano.Models.TipoUsuario
-
+﻿
+@model TicketManzano.Models.AsuntoTickets
 
 
 <div class="modal-dialog">
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Detalle Tipo de Usuario</h4>
-            @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@ @*Boton de la esquina para cerrarse*@
+            <h4 class="modal-title">Editar Asunto</h4>
+          
         </div>
         @*<form action="@Url.Action("Edit","TipoUsuario")" method="post">*@
         <!-- Modal body -->
         <div class="modal-body">
-            <input type="hidden" id="id_tipousuario" name="id_tipousuario" value="@Model.id_tipousuario" />
+            <input type="hidden" id="id_tipousuario" name="id_tipousuario" value="@Model.IDAsunto" />
             <label> Nombre:</label>
-            <input type="text" id="nombretipo" name="nombre" value="@Model.nombretipo" class="form-control" />
+            <input type="text" id="nombretipo" name="nombre" value="@Model.NombreAsunto" class="form-control" />
         </div>
 
         <!-- Modal footer -->
@@ -45,15 +45,15 @@
         else
         {
             const data = {
-                id_tipousuario: $('#id_tipousuario').val(),
-                nombretipo: $('#nombretipo').val().trim()
+                IDAsunto: $('#id_tipousuario').val(),
+                NombreAsunto: $('#nombretipo').val().trim()
 
             }
             //se enviarán los datos al controlador a través de ajax
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("Edit")',
-                data: '{tipoUsuario:' + JSON.stringify(data) + '}',
+                data: '{asuntotickets:' + JSON.stringify(data) + '}',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (ok) {

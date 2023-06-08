@@ -130,11 +130,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AsuntoTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipoUsuarioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AsuntoTickets.cs">
+      <DependentUpon>ticketmanzano.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comentarios.cs">
       <DependentUpon>ticketmanzano.tt</DependentUpon>
@@ -648,6 +653,10 @@
     <Content Include="Views\Usuario\_Edit.cshtml" />
     <Content Include="Views\Usuario\_Eliminar.cshtml" />
     <Content Include="Views\Usuario\_Delete.cshtml" />
+    <Content Include="Views\Tickets\Create.cshtml" />
+    <Content Include="Views\AsuntoTickets\Create.cshtml" />
+    <Content Include="Views\AsuntoTickets\Index.cshtml" />
+    <Content Include="Views\AsuntoTickets\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
