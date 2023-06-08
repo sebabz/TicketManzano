@@ -17,7 +17,6 @@ namespace TicketManzano.Models
         public int IDImagen { get; set; }
         public Nullable<int> IDTicket { get; set; }
         public string RutaImagen { get; set; }
-        public Nullable<System.DateTime> FechaCreacion { get; set; }
     
         public virtual Tickets Tickets { get; set; }
     }

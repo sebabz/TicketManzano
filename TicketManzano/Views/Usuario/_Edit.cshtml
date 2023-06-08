@@ -1,0 +1,134 @@
+﻿@model TicketManzano.Models.Usuarios
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Detalle Usuario</h4>
+            
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input type="hidden" id="id_usuario" value="@Model.IDUsuario" />
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Nombre:</label>
+                <div class="col-10">
+                    <input type="text" name="nombre" id="nombre" value="@Model.Nombre" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Apellido:</label>
+                <div class="col-10">
+                    <input type="text" name="apellido" id="apellido" value="@Model.Apellido" class="form-control" />
+                </div>
+            </div>
+
+            
+            <div class="form-group row">
+                <label class="col-2 text-right">E-Mail:</label>
+                <div class="col-10">
+                    <input type="email" name="email" id="email" value="@Model.CorreoElectronico" class="form-control" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Contraseña:</label>
+                <div class="col-10">
+                    <input type="password" name="pass" id="pass" value="@Model.Password" class="form-control" />
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Tipo Usuario:</label>
+                <div class="col-10">
+                    <div class="form-floating mb-3">
+
+                      @Html.DropDownListFor(model => model.id_tipousuario, (SelectList)ViewBag.tipo, "-- Seleccione un tipo de usuario --", new { @class = "form-control", id = "id_tipousuario" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="button" value="Editar" class="btn btn-primary" id="editar" />
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery.Rut.js" type="text/javascript"></script>
+<script>
+
+    
+    $('#editar').click(function () {
+        let error = '';
+
+        if ($('#nombre').val().trim() === '')
+            error += 'Debe ingresar nombre \n';
+        if ($('#apellido').val().trim() === '')
+            error += 'Debe ingresar apellido \n';
+       
+
+        if ($('#email').val().trim() === '')
+            error += 'Debe ingresar un correo \n';
+        if ($('#pass').val().trim() === '')
+            error += 'Debe ingresar contraseña \n';
+        
+        if ($('#tipo').val() === '')
+            error += 'Debe ingresar tipo de usuario \n';
+
+        if (error != '') {
+            swal('Error validación', error, 'error');
+        }
+        else
+        {
+            const usuario = {
+
+                IDUsuario: $('#id_usuario').val(),
+                Nombre: $('#nombre').val().trim(),
+                Apellido: $('#apellido').val().trim(),
+                CorreoElectronico: $('#email').val().trim(),
+                Password: $('#pass').val(),
+                id_tipousuario: $('#id_tipousuario').val()
+
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Edit")',
+                data: '{usuario:' + JSON.stringify(usuario) + '}',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (resp) {
+                    if (resp == "") {
+                        $('#modalEdit').modal('hide');
+                        swal({
+                            title: 'Modificar Usuario',
+                            text: 'Los datos se han guardado con éxito!',
+                            icon: 'success',
+                            button: 'Cerrar',
+
+                            closeOnClickOutside: false,
+                        }).then(function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+
+</script>
+

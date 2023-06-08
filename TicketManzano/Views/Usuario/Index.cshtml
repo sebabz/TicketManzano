@@ -1,7 +1,99 @@
-﻿
+﻿@model IEnumerable<TicketManzano.Models.Usuarios>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Listado de tipos de Usuario</h2>
 
+<p>
+    <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
+    @*@Html.ActionLink("Nuevo Tipo de Usuario", "Create", new { @class = "btn btn-success" })*@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+             <th>
+                Nombres
+             </th>
+
+             <th>
+                Apellidos
+             </th>
+
+             <th>
+                E-Mail
+             </th>
+             
+             <th>
+             Tipo de Usuario
+             </th>
+
+             <th>
+                Acciones
+             </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorreoElectronico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoUsuario.nombretipo)
+            </td>
+
+            <td>
+                <button class="btn btn-warning" data-toggle="modal"
+                        data-url="@Url.Action("Edit","Usuario",new { id = item.IDUsuario })">
+                    <i class="fa fa-edit"></i> Editar
+                </button>
+                <button class="btn btn-danger" data-toggle="modal"
+                        data-url="@Url.Action("Delete","Usuario", new { id = item.IDUsuario })">
+                    <i class="fa fa-trash"></i> Eliminar
+                </button>
+            </td>
+
+
+
+          
+        </tr>
+    }
+
+</table>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.btn-success').click(function () {
+      window.location.href = '@Html.Raw(Url.Action("Create"))';
+    });
+  });
+</script>
+
+<div class="modal fade" id="modalEdit"></div>
+<div class="modal fade" id="modalDelete"></div>
+<script>
+    $('.btn-warning').click(function () {
+        let url = $(this).data('url');
+        $.get(url, function (data) {
+            $('#modalEdit').html(data);
+            $('#modalEdit').modal('show');
+        });
+    });
+    $('.btn-danger').click(function () {
+        let url = $(this).data('url');
+        $.get(url, function (data) {
+            $('#modalDelete').html(data);
+            $('#modalDelete').modal('show');
+        });
+    });
+
+</script>

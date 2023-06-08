@@ -37,6 +37,7 @@ namespace TicketManzano.Controllers
         public ActionResult Edit(int? id)
         {
             TipoUsuario tipousuario = db.TipoUsuario.Find(id);
+
             return PartialView("_Edit", tipousuario);
         }
         [HttpPost]

@@ -22,7 +22,6 @@
           <Property Name="IDImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDTicket" Type="int" />
           <Property Name="RutaImagen" Type="varchar" MaxLength="255" />
-          <Property Name="FechaCreacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Tickets">
           <Key>
@@ -148,19 +147,19 @@
           <EntitySet Name="Comentarios" EntityType="HelpdeskManzanoModel.Comentarios" />
           <EntitySet Name="Imagenes" EntityType="HelpdeskManzanoModel.Imagenes" />
           <EntitySet Name="Tickets" EntityType="HelpdeskManzanoModel.Tickets" />
+          <EntitySet Name="TipoUsuario" EntityType="HelpdeskManzanoModel.TipoUsuario" />
+          <EntitySet Name="Usuarios" EntityType="HelpdeskManzanoModel.Usuarios" />
           <AssociationSet Name="FK__Comentari__IDTic__5165187F" Association="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F">
             <End Role="Tickets" EntitySet="Tickets" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comentari__IDUsu__52593CB8" Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8">
+            <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Comentarios" EntitySet="Comentarios" />
           </AssociationSet>
           <AssociationSet Name="FK__Imagenes__IDTick__5535A963" Association="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963">
             <End Role="Tickets" EntitySet="Tickets" />
             <End Role="Imagenes" EntitySet="Imagenes" />
-          </AssociationSet>
-          <EntitySet Name="TipoUsuario" EntityType="HelpdeskManzanoModel.TipoUsuario" />
-          <EntitySet Name="Usuarios" EntityType="HelpdeskManzanoModel.Usuarios" />
-          <AssociationSet Name="FK__Comentari__IDUsu__52593CB8" Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Comentarios" EntitySet="Comentarios" />
           </AssociationSet>
           <AssociationSet Name="FK__Tickets__IDUsuar__4E88ABD4" Association="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4">
             <End Role="Usuarios" EntitySet="Usuarios" />
@@ -190,7 +189,6 @@
           <Property Name="IDImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDTicket" Type="Int32" />
           <Property Name="RutaImagen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" FromRole="Imagenes" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Tickets">
@@ -207,30 +205,6 @@
           <NavigationProperty Name="Imagenes" Relationship="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" FromRole="Tickets" ToRole="Imagenes" />
           <NavigationProperty Name="Usuarios" Relationship="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" FromRole="Tickets" ToRole="Usuarios" />
         </EntityType>
-        <Association Name="FK__Comentari__IDTic__5165187F">
-          <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="0..1" />
-          <End Type="HelpdeskManzanoModel.Comentarios" Role="Comentarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tickets">
-              <PropertyRef Name="IDTicket" />
-            </Principal>
-            <Dependent Role="Comentarios">
-              <PropertyRef Name="IDTicket" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Imagenes__IDTick__5535A963">
-          <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="0..1" />
-          <End Type="HelpdeskManzanoModel.Imagenes" Role="Imagenes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tickets">
-              <PropertyRef Name="IDTicket" />
-            </Principal>
-            <Dependent Role="Imagenes">
-              <PropertyRef Name="IDTicket" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="TipoUsuario">
           <Key>
             <PropertyRef Name="id_tipousuario" />
@@ -253,6 +227,18 @@
           <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" FromRole="Usuarios" ToRole="Tickets" />
           <NavigationProperty Name="TipoUsuario" Relationship="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" FromRole="Usuarios" ToRole="TipoUsuario" />
         </EntityType>
+        <Association Name="FK__Comentari__IDTic__5165187F">
+          <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="0..1" />
+          <End Type="HelpdeskManzanoModel.Comentarios" Role="Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tickets">
+              <PropertyRef Name="IDTicket" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="IDTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Comentari__IDUsu__52593CB8">
           <End Type="HelpdeskManzanoModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
           <End Type="HelpdeskManzanoModel.Comentarios" Role="Comentarios" Multiplicity="*" />
@@ -262,6 +248,18 @@
             </Principal>
             <Dependent Role="Comentarios">
               <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Imagenes__IDTick__5535A963">
+          <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="0..1" />
+          <End Type="HelpdeskManzanoModel.Imagenes" Role="Imagenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tickets">
+              <PropertyRef Name="IDTicket" />
+            </Principal>
+            <Dependent Role="Imagenes">
+              <PropertyRef Name="IDTicket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -289,53 +287,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="HelpdeskManzanoModelStoreContainer" CdmEntityContainer="HelpdeskManzanoEntities">
-    <EntitySetMapping Name="Comentarios">
-      <EntityTypeMapping TypeName="IsTypeOf(HelpdeskManzanoModel.Comentarios)">
-        <MappingFragment StoreEntitySet="Comentarios">
-          <ScalarProperty Name="IDComentario" ColumnName="IDComentario" />
-          <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
-          <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
-          <ScalarProperty Name="Contenido" ColumnName="Contenido" />
-          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Imagenes">
-      <EntityTypeMapping TypeName="IsTypeOf(HelpdeskManzanoModel.Imagenes)">
-        <MappingFragment StoreEntitySet="Imagenes">
-          <ScalarProperty Name="IDImagen" ColumnName="IDImagen" />
-          <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
-          <ScalarProperty Name="RutaImagen" ColumnName="RutaImagen" />
-          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tickets">
-      <EntityTypeMapping TypeName="IsTypeOf(HelpdeskManzanoModel.Tickets)">
-        <MappingFragment StoreEntitySet="Tickets">
-          <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
-          <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
-          <ScalarProperty Name="Asunto" ColumnName="Asunto" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TipoUsuario">
-      <EntityTypeMapping TypeName="IsTypeOf(HelpdeskManzanoModel.TipoUsuario)">
-        <MappingFragment StoreEntitySet="TipoUsuario">
-          <ScalarProperty Name="id_tipousuario" ColumnName="id_tipousuario" />
-          <ScalarProperty Name="nombretipo" ColumnName="nombretipo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+          <EntitySetMapping Name="Comentarios">
+            <EntityTypeMapping TypeName="HelpdeskManzanoModel.Comentarios">
+              <MappingFragment StoreEntitySet="Comentarios">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
+                <ScalarProperty Name="IDComentario" ColumnName="IDComentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagenes">
+            <EntityTypeMapping TypeName="HelpdeskManzanoModel.Imagenes">
+              <MappingFragment StoreEntitySet="Imagenes">
+                <ScalarProperty Name="RutaImagen" ColumnName="RutaImagen" />
+                <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
+                <ScalarProperty Name="IDImagen" ColumnName="IDImagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="HelpdeskManzanoModel.Tickets">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuario">
+            <EntityTypeMapping TypeName="HelpdeskManzanoModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="nombretipo" ColumnName="nombretipo" />
+                <ScalarProperty Name="id_tipousuario" ColumnName="id_tipousuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="HelpdeskManzanoModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
@@ -348,7 +345,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-  </EntityContainerMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

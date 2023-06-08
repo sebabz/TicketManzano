@@ -645,6 +645,9 @@
     <Content Include="Views\TipoUsuario\_Edit.cshtml" />
     <Content Include="Views\TipoUsuario\_Delete.cshtml" />
     <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Views\Usuario\_Edit.cshtml" />
+    <Content Include="Views\Usuario\_Eliminar.cshtml" />
+    <Content Include="Views\Usuario\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

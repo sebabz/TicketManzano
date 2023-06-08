@@ -6,13 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ce19a07045e4400d8b4a330383a286ec" Name="Diagram1">
         <EntityTypeShape EntityType="HelpdeskManzanoModel.Comentarios" Width="1.5" PointX="7.5" PointY="2.375" />
-        <EntityTypeShape EntityType="HelpdeskManzanoModel.Imagenes" Width="1.5" PointX="8.375" PointY="5.5" />
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.Imagenes" Width="1.5" PointX="7.5" PointY="6.25" />
         <EntityTypeShape EntityType="HelpdeskManzanoModel.Tickets" Width="1.5" PointX="5.25" PointY="5.75" />
-        <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F" />
-        <AssociationConnector Association="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" />
         <EntityTypeShape EntityType="HelpdeskManzanoModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="3.25" />
         <EntityTypeShape EntityType="HelpdeskManzanoModel.Usuarios" Width="1.5" PointX="3" PointY="2.625" />
+        <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8" />
+        <AssociationConnector Association="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" />
       </Diagram>
