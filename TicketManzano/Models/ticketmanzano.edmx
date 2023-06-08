@@ -4,143 +4,143 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HelpdeskManzanoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="HelpdeskManzanoModelStoreContainer">
-    <EntitySet Name="Comentarios" EntityType="HelpdeskManzanoModel.Store.Comentarios" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Imagenes" EntityType="HelpdeskManzanoModel.Store.Imagenes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tickets" EntityType="HelpdeskManzanoModel.Store.Tickets" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Usuarios" EntityType="HelpdeskManzanoModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoUsuario" EntityType="HelpdeskManzanoModel.Store.TipoUsuario" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK__Comentari__IDTic__5165187F" Association="HelpdeskManzanoModel.Store.FK__Comentari__IDTic__5165187F">
-      <End Role="Tickets" EntitySet="Tickets" />
-      <End Role="Comentarios" EntitySet="Comentarios" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Comentari__IDUsu__52593CB8" Association="HelpdeskManzanoModel.Store.FK__Comentari__IDUsu__52593CB8">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Comentarios" EntitySet="Comentarios" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Imagenes__IDTick__5535A963" Association="HelpdeskManzanoModel.Store.FK__Imagenes__IDTick__5535A963">
-      <End Role="Tickets" EntitySet="Tickets" />
-      <End Role="Imagenes" EntitySet="Imagenes" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Tickets__IDUsuar__4E88ABD4" Association="HelpdeskManzanoModel.Store.FK__Tickets__IDUsuar__4E88ABD4">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Tickets" EntitySet="Tickets" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Usuarios__id_tip__4BAC3F29" Association="HelpdeskManzanoModel.Store.FK__Usuarios__id_tip__4BAC3F29">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Usuarios" EntitySet="Usuarios" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Comentarios">
-    <Key>
-      <PropertyRef Name="IDComentario" />
-    </Key>
-    <Property Name="IDComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IDTicket" Type="int" Nullable="true" />
-    <Property Name="IDUsuario" Type="int" Nullable="true" />
-    <Property Name="Contenido" Type="varchar" Nullable="true" MaxLength="255" />
-    <Property Name="FechaCreacion" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Imagenes">
-    <Key>
-      <PropertyRef Name="IDImagen" />
-    </Key>
-    <Property Name="IDImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IDTicket" Type="int" Nullable="true" />
-    <Property Name="RutaImagen" Type="varchar" Nullable="true" MaxLength="255" />
-    <Property Name="FechaCreacion" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Tickets">
-    <Key>
-      <PropertyRef Name="IDTicket" />
-    </Key>
-    <Property Name="IDTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IDUsuario" Type="int" Nullable="true" />
-    <Property Name="Asunto" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="Descripcion" Type="varchar" Nullable="true" MaxLength="255" />
-    <Property Name="Estado" Type="varchar" Nullable="true" MaxLength="20" />
-    <Property Name="FechaCreacion" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Usuarios">
-    <Key>
-      <PropertyRef Name="IDUsuario" />
-    </Key>
-    <Property Name="IDUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="Apellido" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="CorreoElectronico" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="Contraseña" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="id_tipousuario" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="TipoUsuario">
-    <Key>
-      <PropertyRef Name="id_tipousuario" />
-    </Key>
-    <Property Name="id_tipousuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombretipo" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <Association Name="FK__Comentari__IDTic__5165187F">
-    <End Role="Tickets" Type="HelpdeskManzanoModel.Store.Tickets" Multiplicity="0..1" />
-    <End Role="Comentarios" Type="HelpdeskManzanoModel.Store.Comentarios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tickets">
-        <PropertyRef Name="IDTicket" />
-      </Principal>
-      <Dependent Role="Comentarios">
-        <PropertyRef Name="IDTicket" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Comentari__IDUsu__52593CB8">
-    <End Role="Usuarios" Type="HelpdeskManzanoModel.Store.Usuarios" Multiplicity="0..1" />
-    <End Role="Comentarios" Type="HelpdeskManzanoModel.Store.Comentarios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="IDUsuario" />
-      </Principal>
-      <Dependent Role="Comentarios">
-        <PropertyRef Name="IDUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Imagenes__IDTick__5535A963">
-    <End Role="Tickets" Type="HelpdeskManzanoModel.Store.Tickets" Multiplicity="0..1" />
-    <End Role="Imagenes" Type="HelpdeskManzanoModel.Store.Imagenes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tickets">
-        <PropertyRef Name="IDTicket" />
-      </Principal>
-      <Dependent Role="Imagenes">
-        <PropertyRef Name="IDTicket" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Tickets__IDUsuar__4E88ABD4">
-    <End Role="Usuarios" Type="HelpdeskManzanoModel.Store.Usuarios" Multiplicity="0..1" />
-    <End Role="Tickets" Type="HelpdeskManzanoModel.Store.Tickets" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="IDUsuario" />
-      </Principal>
-      <Dependent Role="Tickets">
-        <PropertyRef Name="IDUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Usuarios__id_tip__4BAC3F29">
-    <End Role="TipoUsuario" Type="HelpdeskManzanoModel.Store.TipoUsuario" Multiplicity="0..1" />
-    <End Role="Usuarios" Type="HelpdeskManzanoModel.Store.Usuarios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="id_tipousuario" />
-      </Principal>
-      <Dependent Role="Usuarios">
-        <PropertyRef Name="id_tipousuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="HelpdeskManzanoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comentarios">
+          <Key>
+            <PropertyRef Name="IDComentario" />
+          </Key>
+          <Property Name="IDComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTicket" Type="int" />
+          <Property Name="IDUsuario" Type="int" />
+          <Property Name="Contenido" Type="varchar" MaxLength="255" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Imagenes">
+          <Key>
+            <PropertyRef Name="IDImagen" />
+          </Key>
+          <Property Name="IDImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTicket" Type="int" />
+          <Property Name="RutaImagen" Type="varchar" MaxLength="255" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="IDTicket" />
+          </Key>
+          <Property Name="IDTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUsuario" Type="int" />
+          <Property Name="Asunto" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="id_tipousuario" />
+          </Key>
+          <Property Name="id_tipousuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombretipo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="id_tipousuario" Type="int" />
+        </EntityType>
+        <Association Name="FK__Comentari__IDTic__5165187F">
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="0..1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tickets">
+              <PropertyRef Name="IDTicket" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="IDTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comentari__IDUsu__52593CB8">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Imagenes__IDTick__5535A963">
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="0..1" />
+          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tickets">
+              <PropertyRef Name="IDTicket" />
+            </Principal>
+            <Dependent Role="Imagenes">
+              <PropertyRef Name="IDTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tickets__IDUsuar__4E88ABD4">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__id_tip__4BAC3F29">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="id_tipousuario" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="id_tipousuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HelpdeskManzanoModelStoreContainer">
+          <EntitySet Name="Comentarios" EntityType="Self.Comentarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Comentari__IDTic__5165187F" Association="Self.FK__Comentari__IDTic__5165187F">
+            <End Role="Tickets" EntitySet="Tickets" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comentari__IDUsu__52593CB8" Association="Self.FK__Comentari__IDUsu__52593CB8">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Imagenes__IDTick__5535A963" Association="Self.FK__Imagenes__IDTick__5535A963">
+            <End Role="Tickets" EntitySet="Tickets" />
+            <End Role="Imagenes" EntitySet="Imagenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tickets__IDUsuar__4E88ABD4" Association="Self.FK__Tickets__IDUsuar__4E88ABD4">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__id_tip__4BAC3F29" Association="Self.FK__Usuarios__id_tip__4BAC3F29">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HelpdeskManzanoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -148,24 +148,24 @@
           <EntitySet Name="Comentarios" EntityType="HelpdeskManzanoModel.Comentarios" />
           <EntitySet Name="Imagenes" EntityType="HelpdeskManzanoModel.Imagenes" />
           <EntitySet Name="Tickets" EntityType="HelpdeskManzanoModel.Tickets" />
-          <EntitySet Name="Usuarios" EntityType="HelpdeskManzanoModel.Usuarios" />
           <AssociationSet Name="FK__Comentari__IDTic__5165187F" Association="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F">
             <End Role="Tickets" EntitySet="Tickets" />
-            <End Role="Comentarios" EntitySet="Comentarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Comentari__IDUsu__52593CB8" Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8">
-            <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Comentarios" EntitySet="Comentarios" />
           </AssociationSet>
           <AssociationSet Name="FK__Imagenes__IDTick__5535A963" Association="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963">
             <End Role="Tickets" EntitySet="Tickets" />
             <End Role="Imagenes" EntitySet="Imagenes" />
           </AssociationSet>
+          <EntitySet Name="TipoUsuario" EntityType="HelpdeskManzanoModel.TipoUsuario" />
+          <EntitySet Name="Usuarios" EntityType="HelpdeskManzanoModel.Usuarios" />
+          <AssociationSet Name="FK__Comentari__IDUsu__52593CB8" Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
           <AssociationSet Name="FK__Tickets__IDUsuar__4E88ABD4" Association="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
-          <EntitySet Name="TipoUsuario" EntityType="HelpdeskManzanoModel.TipoUsuario" />
           <AssociationSet Name="FK__Usuarios__id_tip__4BAC3F29" Association="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuarios" EntitySet="Usuarios" />
@@ -207,20 +207,6 @@
           <NavigationProperty Name="Imagenes" Relationship="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" FromRole="Tickets" ToRole="Imagenes" />
           <NavigationProperty Name="Usuarios" Relationship="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" FromRole="Tickets" ToRole="Usuarios" />
         </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="IDUsuario" />
-          </Key>
-          <Property Name="IDUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Contraseña" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="id_tipousuario" Type="Int32" />
-          <NavigationProperty Name="Comentarios" Relationship="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8" FromRole="Usuarios" ToRole="Comentarios" />
-          <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" FromRole="Usuarios" ToRole="Tickets" />
-          <NavigationProperty Name="TipoUsuario" Relationship="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" FromRole="Usuarios" ToRole="TipoUsuario" />
-        </EntityType>
         <Association Name="FK__Comentari__IDTic__5165187F">
           <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="0..1" />
           <End Type="HelpdeskManzanoModel.Comentarios" Role="Comentarios" Multiplicity="*" />
@@ -230,18 +216,6 @@
             </Principal>
             <Dependent Role="Comentarios">
               <PropertyRef Name="IDTicket" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Comentari__IDUsu__52593CB8">
-          <End Type="HelpdeskManzanoModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
-          <End Type="HelpdeskManzanoModel.Comentarios" Role="Comentarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="Comentarios">
-              <PropertyRef Name="IDUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,6 +231,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="id_tipousuario" />
+          </Key>
+          <Property Name="id_tipousuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombretipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" FromRole="TipoUsuario" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipousuario" Type="Int32" />
+          <NavigationProperty Name="Comentarios" Relationship="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8" FromRole="Usuarios" ToRole="Comentarios" />
+          <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" FromRole="Usuarios" ToRole="Tickets" />
+          <NavigationProperty Name="TipoUsuario" Relationship="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" FromRole="Usuarios" ToRole="TipoUsuario" />
+        </EntityType>
+        <Association Name="FK__Comentari__IDUsu__52593CB8">
+          <End Type="HelpdeskManzanoModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="HelpdeskManzanoModel.Comentarios" Role="Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Tickets__IDUsuar__4E88ABD4">
           <End Type="HelpdeskManzanoModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
           <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="*" />
@@ -269,14 +277,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="TipoUsuario">
-          <Key>
-            <PropertyRef Name="id_tipousuario" />
-          </Key>
-          <Property Name="id_tipousuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombretipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Usuarios" Relationship="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" FromRole="TipoUsuario" ToRole="Usuarios" />
-        </EntityType>
         <Association Name="FK__Usuarios__id_tip__4BAC3F29">
           <End Type="HelpdeskManzanoModel.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
           <End Type="HelpdeskManzanoModel.Usuarios" Role="Usuarios" Multiplicity="*" />
@@ -328,18 +328,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuarios">
-      <EntityTypeMapping TypeName="IsTypeOf(HelpdeskManzanoModel.Usuarios)">
-        <MappingFragment StoreEntitySet="Usuarios">
-          <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
-          <ScalarProperty Name="id_tipousuario" ColumnName="id_tipousuario" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TipoUsuario">
       <EntityTypeMapping TypeName="IsTypeOf(HelpdeskManzanoModel.TipoUsuario)">
         <MappingFragment StoreEntitySet="TipoUsuario">
@@ -348,6 +336,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="HelpdeskManzanoModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id_tipousuario" ColumnName="id_tipousuario" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
