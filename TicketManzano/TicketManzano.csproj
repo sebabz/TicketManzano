@@ -144,6 +144,9 @@
     <Compile Include="Models\Comentarios.cs">
       <DependentUpon>ticketmanzano.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EstadoTickets.cs">
+      <DependentUpon>ticketmanzano.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Imagenes.cs">
       <DependentUpon>ticketmanzano.tt</DependentUpon>
     </Compile>
@@ -657,6 +660,7 @@
     <Content Include="Views\AsuntoTickets\Create.cshtml" />
     <Content Include="Views\AsuntoTickets\Index.cshtml" />
     <Content Include="Views\AsuntoTickets\_Edit.cshtml" />
+    <Content Include="Views\AsuntoTickets\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,6 +27,7 @@ namespace TicketManzano.Models
     
         public virtual DbSet<AsuntoTickets> AsuntoTickets { get; set; }
         public virtual DbSet<Comentarios> Comentarios { get; set; }
+        public virtual DbSet<EstadoTickets> EstadoTickets { get; set; }
         public virtual DbSet<Imagenes> Imagenes { get; set; }
         public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }

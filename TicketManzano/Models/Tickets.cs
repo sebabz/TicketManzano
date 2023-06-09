@@ -23,15 +23,15 @@ namespace TicketManzano.Models
     
         public int IDTicket { get; set; }
         public Nullable<int> IDUsuario { get; set; }
-        public string Asunto { get; set; }
         public string Descripcion { get; set; }
-        public string Estado { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
-        public int IDAsunto { get; set; }
+        public Nullable<int> IDEstado { get; set; }
+        public Nullable<int> IDAsunto { get; set; }
     
         public virtual AsuntoTickets AsuntoTickets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comentarios> Comentarios { get; set; }
+        public virtual EstadoTickets EstadoTickets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Imagenes> Imagenes { get; set; }
         public virtual Usuarios Usuarios { get; set; }

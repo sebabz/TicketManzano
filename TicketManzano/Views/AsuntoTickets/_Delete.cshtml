@@ -1,14 +1,14 @@
-@model TicketManzano.Models.EstadoTickets
+﻿@model TicketManzano.Models.AsuntoTickets
 
 
 <div class="modal-dialog">
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Eliminar Estado de Tickets</h4>
-           
+            <h4 class="modal-title">Eliminar Asunto</h4>
+
         </div>
-        
+        @*<form action="@Url.Action("Delete","TipoUsuario")" method="post">*@
         <!-- Modal body -->
         <div class="modal-body">
             <input type="hidden" id="id_tipousuario" name="id_tipo" value="@Model.IDAsunto" />
@@ -37,7 +37,7 @@
             success: function (resp) {
                 if (resp == '') {
                     swal({
-                        title: 'Eliminar Asunto Tickets',
+                        title: 'Eliminar Asunto',
                         text: 'Se ha eliminado con éxito el registro',
                         icon: 'success',
                         button: 'Cerrar',
@@ -55,4 +55,6 @@
         });
     });
 </script>
+
+
 

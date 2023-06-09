@@ -12,13 +12,18 @@ namespace TicketManzano.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Imagenes
+    public partial class EstadoTickets
     {
-        public int IDImagen { get; set; }
-        public Nullable<int> IDTicket { get; set; }
-        public string RutaImagen { get; set; }
-        public Nullable<System.DateTime> FechaCreacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public EstadoTickets()
+        {
+            this.Tickets = new HashSet<Tickets>();
+        }
     
-        public virtual Tickets Tickets { get; set; }
+        public int IDEstado { get; set; }
+        public string NombreEstado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tickets> Tickets { get; set; }
     }
 }

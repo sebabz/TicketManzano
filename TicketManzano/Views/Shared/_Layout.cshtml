@@ -48,7 +48,7 @@
 
         <div class="search-bar">
             <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <input type="text" name="query" placeholder="Busca aqui" title="Ingresa la palabra a buscar">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </form>
         </div><!-- End Search Bar -->
@@ -229,36 +229,76 @@
     </header><!-- End Header -->
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.html">
                     <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
+                    <span>Inicio</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link collapsed" data-bs-target="#usuarios-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-
-
-                    <li class="nav-heading">Pages</li>
-
+                <ul id="usuarios-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="users-profile.html">
+                        <a class="nav-link collapsed" href="~/Usuario/Index">
                             <i class="bi bi-person"></i>
-                            <span>Profile</span>
+                            <span>Listar Usuarios</span>
                         </a>
-                    </li><!-- End Profile Page Nav -->
-
-
-
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="~/Usuario/Create">
+                            <i class="bi bi-person"></i>
+                            <span>Registro Usuarios</span>
+                        </a>
+                    </li>
                 </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#tipo-usuario-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Tipo de Usuario</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="tipo-usuario-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="~/TipoUsuario/Index">
+                            <i class="bi bi-person"></i>
+                            <span>Listar Tipos de Usuario</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="~/Usuario/Create">
+                            <i class="bi bi-person"></i>
+                            <span>Registro Tipos de Usuario</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#asunto-tickets" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Asunto Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="asunto-tickets" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="~/AsuntoTickets/Index">
+                            <i class="bi bi-person"></i>
+                            <span>Listar Asuntos de Tickets</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="~/AsuntoTickets/Create">
+                            <i class="bi bi-person"></i>
+                            <span>Registro Asuntos de Tickets</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
         </ul>
     </aside><!-- End Sidebar-->
 

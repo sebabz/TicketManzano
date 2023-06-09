@@ -10,7 +10,7 @@
             <PropertyRef Name="IDAsunto" />
           </Key>
           <Property Name="IDAsunto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombreAsunto" Type="varchar" MaxLength="100" />
+          <Property Name="NombreAsunto" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Comentarios">
           <Key>
@@ -22,6 +22,13 @@
           <Property Name="Contenido" Type="varchar" MaxLength="255" />
           <Property Name="FechaCreacion" Type="datetime" />
         </EntityType>
+        <EntityType Name="EstadoTickets">
+          <Key>
+            <PropertyRef Name="IDEstado" />
+          </Key>
+          <Property Name="IDEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEstado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Imagenes">
           <Key>
             <PropertyRef Name="IDImagen" />
@@ -29,6 +36,7 @@
           <Property Name="IDImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDTicket" Type="int" />
           <Property Name="RutaImagen" Type="varchar" MaxLength="255" />
+          <Property Name="FechaCreacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Tickets">
           <Key>
@@ -36,18 +44,17 @@
           </Key>
           <Property Name="IDTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDUsuario" Type="int" />
-          <Property Name="Asunto" Type="varchar" MaxLength="100" />
           <Property Name="Descripcion" Type="varchar" MaxLength="255" />
-          <Property Name="Estado" Type="varchar" MaxLength="20" />
           <Property Name="FechaCreacion" Type="datetime" />
-          <Property Name="IDAsunto" Type="int" Nullable="false" />
+          <Property Name="IDEstado" Type="int" />
+          <Property Name="IDAsunto" Type="int" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
             <PropertyRef Name="id_tipousuario" />
           </Key>
           <Property Name="id_tipousuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombretipo" Type="varchar" MaxLength="50" />
+          <Property Name="nombretipo" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -121,7 +128,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tickets_AsuntoTickets">
-          <End Role="AsuntoTickets" Type="Self.AsuntoTickets" Multiplicity="1" />
+          <End Role="AsuntoTickets" Type="Self.AsuntoTickets" Multiplicity="0..1" />
           <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AsuntoTickets">
@@ -132,9 +139,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tickets_EstadoTickets">
+          <End Role="EstadoTickets" Type="Self.EstadoTickets" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoTickets">
+              <PropertyRef Name="IDEstado" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IDEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HelpdeskManzanoModelStoreContainer">
           <EntitySet Name="AsuntoTickets" EntityType="Self.AsuntoTickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comentarios" EntityType="Self.Comentarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoTickets" EntityType="Self.EstadoTickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
@@ -163,6 +183,10 @@
             <End Role="AsuntoTickets" EntitySet="AsuntoTickets" />
             <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tickets_EstadoTickets" Association="Self.FK_Tickets_EstadoTickets">
+            <End Role="EstadoTickets" EntitySet="EstadoTickets" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -171,6 +195,7 @@
         <EntityContainer Name="HelpdeskManzanoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AsuntoTickets" EntityType="HelpdeskManzanoModel.AsuntoTickets" />
           <EntitySet Name="Comentarios" EntityType="HelpdeskManzanoModel.Comentarios" />
+          <EntitySet Name="EstadoTickets" EntityType="HelpdeskManzanoModel.EstadoTickets" />
           <EntitySet Name="Imagenes" EntityType="HelpdeskManzanoModel.Imagenes" />
           <EntitySet Name="Tickets" EntityType="HelpdeskManzanoModel.Tickets" />
           <EntitySet Name="TipoUsuario" EntityType="HelpdeskManzanoModel.TipoUsuario" />
@@ -186,6 +211,10 @@
           <AssociationSet Name="FK__Comentari__IDUsu__52593CB8" Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_EstadoTickets" Association="HelpdeskManzanoModel.FK_Tickets_EstadoTickets">
+            <End Role="EstadoTickets" EntitySet="EstadoTickets" />
+            <End Role="Tickets" EntitySet="Tickets" />
           </AssociationSet>
           <AssociationSet Name="FK__Imagenes__IDTick__5535A963" Association="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963">
             <End Role="Tickets" EntitySet="Tickets" />
@@ -205,7 +234,7 @@
             <PropertyRef Name="IDAsunto" />
           </Key>
           <Property Name="IDAsunto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreAsunto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreAsunto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK_Tickets_AsuntoTickets" FromRole="AsuntoTickets" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Comentarios">
@@ -220,6 +249,14 @@
           <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F" FromRole="Comentarios" ToRole="Tickets" />
           <NavigationProperty Name="Usuarios" Relationship="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8" FromRole="Comentarios" ToRole="Usuarios" />
         </EntityType>
+        <EntityType Name="EstadoTickets">
+          <Key>
+            <PropertyRef Name="IDEstado" />
+          </Key>
+          <Property Name="IDEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEstado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK_Tickets_EstadoTickets" FromRole="EstadoTickets" ToRole="Tickets" />
+        </EntityType>
         <EntityType Name="Imagenes">
           <Key>
             <PropertyRef Name="IDImagen" />
@@ -227,6 +264,7 @@
           <Property Name="IDImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDTicket" Type="Int32" />
           <Property Name="RutaImagen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Tickets" Relationship="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" FromRole="Imagenes" ToRole="Tickets" />
         </EntityType>
         <EntityType Name="Tickets">
@@ -235,13 +273,13 @@
           </Key>
           <Property Name="IDTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDUsuario" Type="Int32" />
-          <Property Name="Asunto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-          <Property Name="IDAsunto" Type="Int32" Nullable="false" />
+          <Property Name="IDEstado" Type="Int32" />
+          <Property Name="IDAsunto" Type="Int32" />
           <NavigationProperty Name="AsuntoTickets" Relationship="HelpdeskManzanoModel.FK_Tickets_AsuntoTickets" FromRole="Tickets" ToRole="AsuntoTickets" />
           <NavigationProperty Name="Comentarios" Relationship="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F" FromRole="Tickets" ToRole="Comentarios" />
+          <NavigationProperty Name="EstadoTickets" Relationship="HelpdeskManzanoModel.FK_Tickets_EstadoTickets" FromRole="Tickets" ToRole="EstadoTickets" />
           <NavigationProperty Name="Imagenes" Relationship="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" FromRole="Tickets" ToRole="Imagenes" />
           <NavigationProperty Name="Usuarios" Relationship="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" FromRole="Tickets" ToRole="Usuarios" />
         </EntityType>
@@ -250,7 +288,7 @@
             <PropertyRef Name="id_tipousuario" />
           </Key>
           <Property Name="id_tipousuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombretipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombretipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuarios" Relationship="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" FromRole="TipoUsuario" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Usuarios">
@@ -268,7 +306,7 @@
           <NavigationProperty Name="TipoUsuario" Relationship="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" FromRole="Usuarios" ToRole="TipoUsuario" />
         </EntityType>
         <Association Name="FK_Tickets_AsuntoTickets">
-          <End Type="HelpdeskManzanoModel.AsuntoTickets" Role="AsuntoTickets" Multiplicity="1" />
+          <End Type="HelpdeskManzanoModel.AsuntoTickets" Role="AsuntoTickets" Multiplicity="0..1" />
           <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AsuntoTickets">
@@ -300,6 +338,18 @@
             </Principal>
             <Dependent Role="Comentarios">
               <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_EstadoTickets">
+          <End Type="HelpdeskManzanoModel.EstadoTickets" Role="EstadoTickets" Multiplicity="0..1" />
+          <End Type="HelpdeskManzanoModel.Tickets" Role="Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoTickets">
+              <PropertyRef Name="IDEstado" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="IDEstado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -364,9 +414,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EstadoTickets">
+            <EntityTypeMapping TypeName="HelpdeskManzanoModel.EstadoTickets">
+              <MappingFragment StoreEntitySet="EstadoTickets">
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Imagenes">
             <EntityTypeMapping TypeName="HelpdeskManzanoModel.Imagenes">
               <MappingFragment StoreEntitySet="Imagenes">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="RutaImagen" ColumnName="RutaImagen" />
                 <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
                 <ScalarProperty Name="IDImagen" ColumnName="IDImagen" />
@@ -377,10 +436,9 @@
             <EntityTypeMapping TypeName="HelpdeskManzanoModel.Tickets">
               <MappingFragment StoreEntitySet="Tickets">
                 <ScalarProperty Name="IDAsunto" ColumnName="IDAsunto" />
+                <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
                 <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
                 <ScalarProperty Name="IDTicket" ColumnName="IDTicket" />
               </MappingFragment>
