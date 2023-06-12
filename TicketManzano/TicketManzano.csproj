@@ -151,6 +151,9 @@
     <Compile Include="Models\Imagenes.cs">
       <DependentUpon>ticketmanzano.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PrioridadTickets.cs">
+      <DependentUpon>ticketmanzano.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ticketmanzano.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
