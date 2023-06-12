@@ -1,7 +1,7 @@
 ﻿@model TicketManzano.Models.Usuarios
 
 
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
@@ -18,7 +18,7 @@
                     <input type="text" name="nombre" id="nombre" value="@Model.Nombre" class="form-control" />
                 </div>
             </div>
-
+            <br />
             <div class="form-group row">
                 <label class="col-2 text-right">Apellido:</label>
                 <div class="col-10">
@@ -26,14 +26,14 @@
                 </div>
             </div>
 
-            
+            <br />
             <div class="form-group row">
                 <label class="col-2 text-right">E-Mail:</label>
                 <div class="col-10">
                     <input type="email" name="email" id="email" value="@Model.CorreoElectronico" class="form-control" />
                 </div>
             </div>
-
+            <br />
 
             <div class="form-group row">
                 <label class="col-2 text-right">Contraseña:</label>
@@ -41,7 +41,7 @@
                     <input type="password" name="pass" id="pass" value="@Model.Password" class="form-control" />
                 </div>
             </div>
-
+            <br />
 
 
 
@@ -50,8 +50,8 @@
                 <div class="col-10">
                     <div class="form-floating mb-3">
 
-                      @Html.DropDownListFor(model => model.id_tipousuario, (SelectList)ViewBag.tipo, "-- Seleccione un tipo de usuario --", new { @class = "form-control", id = "id_tipousuario" })
-
+                        @Html.DropDownListFor(model => model.id_tipousuario, (SelectList)ViewBag.tipo, "-- Seleccione un tipo de usuario --", new { @class = "form-control", id = "id_tipousuario" })
+                        <br />
                     </div>
                 </div>
             </div>

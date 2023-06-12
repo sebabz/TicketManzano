@@ -1,14 +1,14 @@
-﻿@model IEnumerable < TicketManzano.Models.AsuntoTickets>
+﻿@model IEnumerable<TicketManzano.Models.EstadoTickets>
 @{
     ViewBag.Title = "Listado de Asuntos de Tickets";
 }
 
-<h2>Listar Asunto de Tickets</h2>
+<h2>Listar Estados de Tickets</h2>
 
 
 <p>
     <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
-   
+    @*@Html.ActionLink("Nuevo Asunto de Tickets", "Create", new { @class = "btn btn-success" })*@
 </p>
 <table class="table">
     <thead>
@@ -26,16 +26,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreAsunto)
+                @Html.DisplayFor(modelItem => item.NombreEstado)
             </td>
 
             <td>
                 <button class="btn btn-warning" data-toggle="modal"
-                        data-url="@Url.Action("Edit","AsuntoTickets",new { id = item.IDAsunto })">
+                        data-url="@Url.Action("Edit","EstadoTickets",new { id = item.IDEstado })">
                     <i class="fa fa-edit"></i> Editar
                 </button>
                 <button class="btn btn-danger" data-toggle="modal"
-                        data-url="@Url.Action("Delete","AsuntoTickets", new { id = item.IDAsunto })">
+                        data-url="@Url.Action("Delete","EstadoTickets", new { id = item.IDEstado })">
                     <i class="fa fa-trash"></i> Eliminar
                 </button>
             </td>

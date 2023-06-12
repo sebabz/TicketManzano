@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AsuntoTicketsController.cs" />
+    <Compile Include="Controllers\EstadoTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipoUsuarioController.cs" />
@@ -661,6 +662,11 @@
     <Content Include="Views\AsuntoTickets\Index.cshtml" />
     <Content Include="Views\AsuntoTickets\_Edit.cshtml" />
     <Content Include="Views\AsuntoTickets\_Delete.cshtml" />
+    <Content Include="Views\EstadoTickets\Index.cshtml" />
+    <Content Include="Views\EstadoTickets\Create.cshtml" />
+    <Content Include="Views\EstadoTickets\_Edit.cshtml" />
+    <Content Include="Views\EstadoTickets\_Delete.cshtml" />
+    <Content Include="Views\Tickets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

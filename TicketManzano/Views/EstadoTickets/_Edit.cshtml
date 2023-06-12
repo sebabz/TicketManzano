@@ -1,20 +1,20 @@
 ﻿
-@model TicketManzano.Models.AsuntoTickets
+@model TicketManzano.Models.EstadoTickets
 
 
 <div class="modal-dialog">
     <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Editar Asunto</h4>
+            <h4 class="modal-title">Editar Estado</h4>
 
         </div>
         @*<form action="@Url.Action("Edit","TipoUsuario")" method="post">*@
         <!-- Modal body -->
         <div class="modal-body">
-            <input type="hidden" id="id_tipousuario" name="id_tipousuario" value="@Model.IDAsunto" />
+            <input type="hidden" id="id_tipousuario" name="id_tipousuario" value="@Model.IDEstado" />
             <label> Nombre:</label>
-            <input type="text" id="nombretipo" name="nombre" value="@Model.NombreAsunto" class="form-control" />
+            <input type="text" id="nombretipo" name="nombre" value="@Model.NombreEstado" class="form-control" />
         </div>
 
         <!-- Modal footer -->
@@ -45,15 +45,15 @@
         else
         {
             const data = {
-                IDAsunto: $('#id_tipousuario').val(),
-                NombreAsunto: $('#nombretipo').val().trim()
+                IDEstado: $('#id_tipousuario').val(),
+                NombreEstado: $('#nombretipo').val().trim()
 
             }
             //se enviarán los datos al controlador a través de ajax
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("Edit")',
-                data: '{asuntotickets:' + JSON.stringify(data) + '}',
+                data: '{estadotickets:' + JSON.stringify(data) + '}',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (ok) {
