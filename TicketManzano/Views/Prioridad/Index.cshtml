@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TicketManzano.Models.PrioridadTickets>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Prioridades</h2>
+
+<p>
+    <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
+   
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Prioridad
+            </th>
+
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombrePrioridad)
+            </td>
+
+            <td>
+                <button class="btn btn-warning" data-toggle="modal"
+                        data-url="@Url.Action("Edit","PrioridadTickets",new { id = item.IDPrioridad })">
+                    <i class="fa fa-edit"></i> Editar
+                </button>
+                <button class="btn btn-danger" data-toggle="modal"
+                        data-url="@Url.Action("Delete","PrioridadTickets", new { id = item.IDPrioridad })">
+                    <i class="fa fa-trash"></i> Eliminar
+                </button>
+            </td>
+
+
+
+
+        </tr>
+    }
+
+</table>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.btn-success').click(function () {
+      window.location.href = '@Html.Raw(Url.Action("Create"))';
+    });
+  });
+</script>
+
+<div class="modal fade" id="modalEdit"></div>
+<div class="modal fade" id="modalDelete"></div>
+<script>
+    $('.btn-warning').click(function () {
+        let url = $(this).data('url');
+        $.get(url, function (data) {
+            $('#modalEdit').html(data);
+            $('#modalEdit').modal('show');
+        });
+    });
+    $('.btn-danger').click(function () {
+        let url = $(this).data('url');
+        $.get(url, function (data) {
+            $('#modalDelete').html(data);
+            $('#modalDelete').modal('show');
+        });
+    });
+
+</script>

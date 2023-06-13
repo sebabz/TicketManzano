@@ -133,6 +133,7 @@
     <Compile Include="Controllers\AsuntoTicketsController.cs" />
     <Compile Include="Controllers\EstadoTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PrioridadController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipoUsuarioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -670,6 +671,8 @@
     <Content Include="Views\EstadoTickets\_Edit.cshtml" />
     <Content Include="Views\EstadoTickets\_Delete.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\Prioridad\Index.cshtml" />
+    <Content Include="Views\Prioridad\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
