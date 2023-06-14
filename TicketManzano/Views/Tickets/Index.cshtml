@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TicketManzano.Models.AsuntoTickets>
+﻿@model IEnumerable<TicketManzano.Models.Tickets>
 @{
     ViewBag.Title = "Listado de Tickets";
 }
@@ -14,42 +14,28 @@
     <thead>
         <tr>
             <th>
-                Nombre
+                Nombre 
             </th>
 
             <th>
-                Nombre
+                Apellido 
             </th>
 
             <th>
-                Nombre
+                Asunto
             </th>
 
             <th>
-                Nombre
+                Descripción
+            </th>
+            
+            <th>
+                Fecha Solicitud
             </th>
 
             <th>
-                Nombre
+                Prioridad
             </th>
-
-            <th>
-                Nombre
-            </th>
-
-            <th>
-                Nombre
-            </th>
-
-            <th>
-                Nombre
-            </th>
-
-            <th>
-                Nombre
-            </th>
-
-
 
             <th>
                 Acciones
@@ -60,9 +46,24 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreAsunto)
+                @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuarios.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AsuntoTickets.NombreAsunto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrioridadTickets.NombrePrioridad)
+            </td>
+         
             <td>
                 <button class="btn btn-warning" data-toggle="modal"
                         data-url="@Url.Action("Edit","AsuntoTickets",new { id = item.IDAsunto })">

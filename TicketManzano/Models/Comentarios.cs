@@ -20,7 +20,7 @@ namespace TicketManzano.Models
         public string Contenido { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
     
-        public virtual Tickets Tickets { get; set; }
         public virtual Usuarios Usuarios { get; set; }
+        public virtual Tickets Tickets { get; set; }
     }
 }

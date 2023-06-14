@@ -22,8 +22,9 @@ namespace TicketManzano.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.tipo = new SelectList(db.TipoUsuario, "id_tipousuario", "nombretipo");
             ViewBag.usuario = new SelectList(db.Usuarios, "IDUsuario", "CorreoElectronico");
+            ViewBag.asunto = new SelectList(db.AsuntoTickets, "IDAsunto", "NombreAsunto");
+            ViewBag.Prioridad = new SelectList(db.PrioridadTickets, "IDPrioridad", "NombrePrioridad");
             return View();
         }
 
