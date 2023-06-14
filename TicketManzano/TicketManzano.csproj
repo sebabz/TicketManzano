@@ -674,6 +674,7 @@
     <Content Include="Views\Prioridad\Index.cshtml" />
     <Content Include="Views\Prioridad\Create.cshtml" />
     <Content Include="Views\Prioridad\_Edit.cshtml" />
+    <Content Include="Views\Prioridad\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
