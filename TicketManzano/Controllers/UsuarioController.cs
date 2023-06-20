@@ -13,6 +13,53 @@ namespace TicketManzano.Controllers
     {
         private HelpdeskManzanoEntities db = new HelpdeskManzanoEntities();
         // GET: Usuario
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(String email, string pass)
+        {
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(pass))
+            {
+
+                var usuario = db.Usuarios.FirstOrDefault(u => u.CorreoElectronico.Equals(email) && u.Password.Equals(pass));
+                if (usuario != null)
+                {
+
+                    //Session["tipoUsuario"] = usuario.TipoUsuario.nombre;
+                    //Session["usuario"] = usuario.nombre + " " + usuario.apellido;
+
+                    //Session["idusuario"] = usuario.id_usuario;
+                    //Session["idTipoUsuario"] = usuario.TipoUsuario.id_tipo;
+                    //Session["EstadoUsuario"] = usuario.Estado.nombre;
+                    //if (usuario.== "Suspendido")
+                    //{
+
+                    //    return RedirectToAction("Login", "Usuarios");
+                    //}
+                    return RedirectToAction("Create", "Tickets");
+                }
+            }
+
+
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
+
+
+
+
+
         public ActionResult Index()
         {
 
