@@ -6,11 +6,15 @@
 
 <h2>Listado de Prioridades</h2>
 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 <p>
     <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
-   
+
 </p>
-<table class="table">
+<table id="example" class="display dataTable" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -22,34 +26,42 @@
             </th>
         </tr>
     </thead>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombrePrioridad)
-            </td>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombrePrioridad)
+                </td>
 
-            <td>
-                <button class="btn btn-warning" data-toggle="modal"
-                        data-url="@Url.Action("Edit","Prioridad",new { id = item.IDPrioridad })">
-                    <i class="fa fa-edit"></i> Editar
-                </button>
-                <button class="btn btn-danger" data-toggle="modal"
-                        data-url="@Url.Action("Delete","Prioridad", new { id = item.IDPrioridad })">
-                    <i class="fa fa-trash"></i> Eliminar
-                </button>
-            </td>
+                <td>
+                    <button class="btn btn-warning" data-toggle="modal"
+                            data-url="@Url.Action("Edit","Prioridad",new { id = item.IDPrioridad })">
+                        <i class="fa fa-edit"></i> Editar
+                    </button>
+                    <button class="btn btn-danger" data-toggle="modal"
+                            data-url="@Url.Action("Delete","Prioridad", new { id = item.IDPrioridad })">
+                        <i class="fa fa-trash"></i> Eliminar
+                    </button>
+                </td>
 
 
 
 
-        </tr>
-    }
+            </tr>
 
+        }
+    </tbody>
 </table>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
+
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+
+
   $(document).ready(function () {
     $('.btn-success').click(function () {
       window.location.href = '@Html.Raw(Url.Action("Create"))';

@@ -10,17 +10,17 @@
         <EntityTypeShape EntityType="HelpdeskManzanoModel.EstadoTickets" Width="1.5" PointX="6" PointY="7.125" />
         <EntityTypeShape EntityType="HelpdeskManzanoModel.Imagenes" Width="1.5" PointX="10.5" PointY="4" />
         <EntityTypeShape EntityType="HelpdeskManzanoModel.PrioridadTickets" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="HelpdeskManzanoModel.Tickets" Width="1.5" PointX="8.25" PointY="3" />
         <EntityTypeShape EntityType="HelpdeskManzanoModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="4.125" />
         <EntityTypeShape EntityType="HelpdeskManzanoModel.Usuarios" Width="1.5" PointX="3" PointY="3.5" />
+        <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8" />
+        <AssociationConnector Association="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" />
+        <EntityTypeShape EntityType="HelpdeskManzanoModel.Tickets" Width="1.5" PointX="8.25" PointY="4.125" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK_Tickets_AsuntoTickets" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDTic__5165187F" />
-        <AssociationConnector Association="HelpdeskManzanoModel.FK__Comentari__IDUsu__52593CB8" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK_Tickets_EstadoTickets" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Imagenes__IDTick__5535A963" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK_Tickets_PrioridadTickets" />
         <AssociationConnector Association="HelpdeskManzanoModel.FK__Tickets__IDUsuar__4E88ABD4" />
-        <AssociationConnector Association="HelpdeskManzanoModel.FK__Usuarios__id_tip__4BAC3F29" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

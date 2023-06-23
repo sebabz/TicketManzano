@@ -1,0 +1,144 @@
+﻿
+@model TicketManzano.Models.Tickets
+
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Detalle del Ticket</h4>
+
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input type="hidden" id="id_ticket" value="@Model.IDTicket" />
+            <input type="hidden" id="id_usuario" value="@Model.Usuarios.IDUsuario" />
+
+            
+            <br />
+            <div class="form-group row">
+                <label class="col-2 text-right">E-Mail:</label>
+                <div class="col-10">
+                    <input type="email" name="email" id="email" value="@Model.Usuarios.CorreoElectronico" class="form-control" disabled/>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Contraseña:</label>
+                <div class="col-10">
+                    <input type="text" id="descripcion" value="@Model.Descripcion" class="form-control" />
+                </div>
+            </div>
+            <br />
+
+
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Asunto del Ticket:</label>
+                <div class="col-10">
+                    <div class="form-floating mb-3">
+
+                        @Html.DropDownListFor(model => model.IDAsunto, (SelectList)ViewBag.asunto, "-- Seleccione un asunto --", new { @class = "form-control", id = "idasunto" })
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Estado del Ticket:</label>
+                <div class="col-10">
+                    <div class="form-floating mb-3">
+
+                        @Html.DropDownListFor(model => model.IDEstado, (SelectList)ViewBag.estado, "-- Seleccione un estado --", new { @class = "form-control", id = "idestado" })
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-2 text-right">Prioridad del Ticket:</label>
+                <div class="col-10">
+                    <div class="form-floating mb-3">
+
+                        @Html.DropDownListFor(model => model.IDPrioridad, (SelectList)ViewBag.prioridad, "-- Seleccione un estado --", new { @class = "form-control", id = "idestado" })
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="button" value="Editar" class="btn btn-primary" id="editar" />
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery.Rut.js" type="text/javascript"></script>
+<script>
+
+
+    $('#editar').click(function () {
+        let error = '';
+
+       
+
+        if ($('#email').val().trim() === '')
+            error += 'Debe ingresar un correo \n';
+       
+
+        i
+
+        if (error != '') {
+            swal('Error validación', error, 'error');
+        }
+        else
+        {
+            const ticket = {
+
+                IDUsuario: $('#id_usuario').val(),
+                Nombre: $('#nombre').val().trim(),
+                Apellido: $('#apellido').val().trim(),
+                CorreoElectronico: $('#email').val().trim(),
+                Password: $('#pass').val(),
+                id_tipousuario: $('#id_tipousuario').val()
+
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Edit")',
+                data: '{usuario:' + JSON.stringify(usuario) + '}',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (resp) {
+                    if (resp == "") {
+                        $('#modalEdit').modal('hide');
+                        swal({
+                            title: 'Modificar Usuario',
+                            text: 'Los datos se han guardado con éxito!',
+                            icon: 'success',
+                            button: 'Cerrar',
+
+                            closeOnClickOutside: false,
+                        }).then(function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+
+</script>
+

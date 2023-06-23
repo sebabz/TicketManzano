@@ -23,9 +23,7 @@ namespace TicketManzano.Models
     
         public int IDTicket { get; set; }
         public Nullable<int> IDUsuario { get; set; }
-        public string Asunto { get; set; }
         public string Descripcion { get; set; }
-        public string Estado { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         public int IDAsunto { get; set; }
         public int IDEstado { get; set; }

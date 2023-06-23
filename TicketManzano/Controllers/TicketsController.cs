@@ -25,6 +25,7 @@ namespace TicketManzano.Controllers
             ViewBag.usuario = new SelectList(db.Usuarios, "IDUsuario", "CorreoElectronico");
             ViewBag.asunto = new SelectList(db.AsuntoTickets, "IDAsunto", "NombreAsunto");
             ViewBag.Prioridad = new SelectList(db.PrioridadTickets, "IDPrioridad", "NombrePrioridad");
+            ViewBag.estado = new SelectList(db.EstadoTickets, "IDEstado", "NombreEstado");
             return View();
         }
 
@@ -51,7 +52,12 @@ namespace TicketManzano.Controllers
 
             Tickets tickets = db.Tickets.Find(id);
 
-            ViewBag.Usuario = new SelectList(db.Usuarios, "id_tipousuario", "nombretipo", tickets.IDUsuario);
+            
+            ViewBag.correousuario = new SelectList(db.Usuarios, "IDUsuario", "CorreoElectronico", tickets.IDUsuario);
+            ViewBag.prioridad = new SelectList(db.PrioridadTickets, "IDPrioridad", "NombrePrioridad", tickets.IDTicket);
+            ViewBag.asunto = new SelectList(db.AsuntoTickets, "IDAsunto", "NombreAsunto", tickets.IDTicket);
+            ViewBag.estado = new SelectList(db.EstadoTickets, "IDEstado", "NombreEstado", tickets.IDEstado);
+
 
             return PartialView("_Edit", tickets);
         }
