@@ -4,72 +4,119 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Listado de tipos de Usuario</h2>
+<h2>Listado de Usuarios</h2>
 
 <p>
     <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
     @*@Html.ActionLink("Nuevo Tipo de Usuario", "Create", new { @class = "btn btn-success" })*@
 </p>
-<table class="table">
+<table id="tablausuarios" class="table table-striped" style="width:100%">
     <thead>
         <tr>
-             <th>
+            <th>
                 Nombres
-             </th>
+            </th>
 
-             <th>
+            <th>
                 Apellidos
-             </th>
+            </th>
 
-             <th>
+            <th>
                 E-Mail
-             </th>
-             
-             <th>
-             Tipo de Usuario
-             </th>
+            </th>
 
-             <th>
+            <th>
+                Tipo de Usuario
+            </th>
+
+            <th>
                 Acciones
-             </th>
+            </th>
         </tr>
     </thead>
-    @foreach (var item in Model)
-    {
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorreoElectronico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoUsuario.nombretipo)
+                </td>
+
+                <td>
+                    <button class="btn btn-warning" data-toggle="modal"
+                            data-url="@Url.Action("Edit","Usuario",new { id = item.IDUsuario })">
+                        <i class="fa fa-edit"></i> Editar
+                    </button>
+                    <button class="btn btn-danger" data-toggle="modal"
+                            data-url="@Url.Action("Delete","Usuario", new { id = item.IDUsuario })">
+                        <i class="fa fa-trash"></i> Eliminar
+                    </button>
+                </td>
+
+
+
+
+            </tr>
+        }
+    </tbody>
+    <tfoot>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorreoElectronico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoUsuario.nombretipo)
-            </td>
+            <th>
+                Nombres
+            </th>
 
-            <td>
-                <button class="btn btn-warning" data-toggle="modal"
-                        data-url="@Url.Action("Edit","Usuario",new { id = item.IDUsuario })">
-                    <i class="fa fa-edit"></i> Editar
-                </button>
-                <button class="btn btn-danger" data-toggle="modal"
-                        data-url="@Url.Action("Delete","Usuario", new { id = item.IDUsuario })">
-                    <i class="fa fa-trash"></i> Eliminar
-                </button>
-            </td>
+            <th>
+                Apellidos
+            </th>
 
+            <th>
+                E-Mail
+            </th>
 
+            <th>
+                Tipo de Usuario
+            </th>
 
-          
+            <th>
+                
+            </th>
         </tr>
-    }
-
+    </tfoot>
 </table>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#tablausuarios').DataTable({
+        initComplete: function () {
+            this.api()
+                .columns()
+                .every(function () {
+                    var column = this;
+                    var title = column.footer().textContent;
+
+                   
+                    $('<input type="text" placeholder="Busqueda"/>')
+                        .appendTo($(column.footer()).empty())
+                        .on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                });
+        },
+    });
+</script>
+
+
+
 <script>
   $(document).ready(function () {
     $('.btn-success').click(function () {

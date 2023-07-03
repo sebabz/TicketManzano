@@ -7,14 +7,13 @@
 <h2>Listado de Prioridades</h2>
 
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 
 <p>
     <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
 
 </p>
-<table id="example" class="display dataTable" style="width:100%">
+<table id="tablaprioridad" class="table table-striped" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -54,7 +53,30 @@
     </tbody>
 </table>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $('#tablaprioridad').DataTable({
+        initComplete: function () {
+            this.api()
+                .columns()
+                .every(function () {
+                    var column = this;
+                    var title = column.footer().textContent;
+
+
+                    $('<input type="text" placeholder="Busqueda"/>')
+                        .appendTo($(column.footer()).empty())
+                        .on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                });
+        },
+    });
+</script>
+
+
 <script>
 
     $(document).ready(function () {

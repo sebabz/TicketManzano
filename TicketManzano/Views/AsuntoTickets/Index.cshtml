@@ -1,4 +1,4 @@
-﻿@model IEnumerable < TicketManzano.Models.AsuntoTickets>
+﻿@model IEnumerable<TicketManzano.Models.AsuntoTickets>
 @{
     ViewBag.Title = "Listado de Asuntos de Tickets";
 }
@@ -8,9 +8,9 @@
 
 <p>
     <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
-   
+
 </p>
-<table class="table">
+<table id="tablaasuntos" class="table table-striped" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -48,7 +48,29 @@
 
 </table>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $('#tablaasuntos').DataTable({
+        initComplete: function () {
+            this.api()
+                .columns()
+                .every(function () {
+                    var column = this;
+                    var title = column.footer().textContent;
+
+
+                    $('<input type="text" placeholder="Busqueda"/>')
+                        .appendTo($(column.footer()).empty())
+                        .on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                });
+        },
+    });
+</script>
+
 <script>
   $(document).ready(function () {
     $('.btn-success').click(function () {

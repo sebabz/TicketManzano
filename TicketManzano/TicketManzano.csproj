@@ -432,6 +432,9 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\BootstrapLogin.css" />
     <Content Include="Content\bootstrap_tabla.css" />
+    <Content Include="Content\dataTables.bootstrap5.min.css" />
+    <Content Include="Content\Datatables\bootstrap.min.css" />
+    <Content Include="Content\Datatables\dataTables.bootstrap5.min.css" />
     <Content Include="Content\patterns\1.png" />
     <Content Include="Content\patterns\2.png" />
     <Content Include="Content\patterns\3.png" />
@@ -596,9 +599,12 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\Datatables\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cdn.datatables.net_1.13.4_css_jquery.dataTables.min.css" />
+    <Content Include="Scripts\cdn.datatables.net_1.13.4_js_dataTables.bootstrap5.min.js" />
     <Content Include="Scripts\cdn.datatables.net_1.13.4_js_jquery.dataTables.min.js" />
+    <Content Include="Scripts\code.jquery.com_jquery-3.5.1.js" />
     <Content Include="Scripts\dataTables.bootstrap4.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

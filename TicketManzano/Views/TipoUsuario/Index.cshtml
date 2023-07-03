@@ -10,13 +10,13 @@
     <button type="button" class="btn btn-success"><i class="bi bi-check-circle"></i> Nuevo</button>
     @*@Html.ActionLink("Nuevo Tipo de Usuario", "Create", new { @class = "btn btn-success" })*@
 </p>
-<table class="table">
+<table id="tablatipousuario" class="table table-striped" style="width:100%">
     <thead>
         <tr>
             <th>
                 Nombre
             </th>
-            
+
             <th>
                 Acciones
             </th>
@@ -28,7 +28,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.nombretipo)
             </td>
-            
+
             <td>
                 <button class="btn btn-warning" data-toggle="modal"
                         data-url="@Url.Action("Edit","TipoUsuario",new { id = item.id_tipousuario })">
@@ -42,13 +42,35 @@
 
 
 
-           
+
         </tr>
     }
 
 </table>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $('#tablatipousuario').DataTable({
+        initComplete: function () {
+            this.api()
+                .columns()
+                .every(function () {
+                    var column = this;
+                    var title = column.footer().textContent;
+
+
+                    $('<input type="text" placeholder="Busqueda"/>')
+                        .appendTo($(column.footer()).empty())
+                        .on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                });
+        },
+    });
+</script>
+
 <script>
   $(document).ready(function () {
     $('.btn-success').click(function () {
