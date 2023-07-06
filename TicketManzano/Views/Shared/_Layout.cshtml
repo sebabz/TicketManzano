@@ -232,15 +232,34 @@
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
-                    <i class="bi bi-grid"></i>
-                    <span>Inicio</span>
+                <a class="nav-link collapsed" href="/Tickets/Create">
+                    <i class="bi bi-clipboard-plus"></i>
+                    <span>Crear Ticket</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#tickets-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-clipboard2-check"></i><span>Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="tickets-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="~/Tickets/Index">
+                            <i class="bi bi-clipboard2-plus"></i>
+                            <span>Listar Tickets</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="~/Tickets/Create">
+                            <i class="bi bi-clipboard2-plus"></i>
+                            <span>Creación de Tickets</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#usuarios-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-person"></i><span>Usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="usuarios-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li class="nav-item">
@@ -260,7 +279,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tipo-usuario-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Tipo de Usuario</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-person-workspace"></i><span>Tipo de Usuario</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="tipo-usuario-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li class="nav-item">
@@ -280,7 +299,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#asunto-tickets" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Asunto Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-pin-angle"></i><span>Asunto Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="asunto-tickets" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li class="nav-item">
@@ -300,7 +319,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#estado-tickets" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Estado Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-wrench-adjustable"></i><span>Estado Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="estado-tickets" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li class="nav-item">

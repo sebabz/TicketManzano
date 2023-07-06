@@ -34,7 +34,8 @@
                 </div>
 
                 <!-- Login Form -->
-                <form action="@Url.Action("Login")" method="post">
+                <form action="@Url.Action("Login", "Usuario")" method="post">
+                    @Html.AntiForgeryToken() <!--Esto es para un crear un token de antifalsificación-->
                     <input type="text" id="login" class="fadeIn second" name="email" placeholder="Login">
                     <input type="password" id="password" class="fadeIn third" name="pass" placeholder="Contraseña">
                     <input type="submit" class="fadeIn fourth" value="Ingresar">
@@ -43,7 +44,7 @@
                 <!-- Remind Passowrd -->
 
 
-                <a href="~/OrdenSalidas/Saberestado">¿Olvidaste tu contraseña?</a>
+                <a href="">¿Olvidaste tu contraseña?</a>
 
             </div>
         </div>

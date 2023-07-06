@@ -13,12 +13,12 @@ namespace TicketManzano.Controllers
     {
         private HelpdeskManzanoEntities db = new HelpdeskManzanoEntities();
         // GET: Usuario
-
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(String email, string pass)
         {
@@ -29,8 +29,8 @@ namespace TicketManzano.Controllers
                 if (usuario != null)
                 {
 
-                    //Session["tipoUsuario"] = usuario.TipoUsuario.nombre;
-                    //Session["usuario"] = usuario.nombre + " " + usuario.apellido;
+                    Session["email"] = usuario.CorreoElectronico;
+                    Session["idusuario"] = usuario.IDUsuario;
 
                     //Session["idusuario"] = usuario.id_usuario;
                     //Session["idTipoUsuario"] = usuario.TipoUsuario.id_tipo;
@@ -47,7 +47,7 @@ namespace TicketManzano.Controllers
 
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult Logout()
         {
             Session.Clear();
@@ -55,7 +55,6 @@ namespace TicketManzano.Controllers
             Session.Abandon();
             return RedirectToAction("Login");
         }
-
 
 
 
@@ -68,7 +67,7 @@ namespace TicketManzano.Controllers
 
 
         }
-
+       
         public ActionResult Create()
         {
             ViewBag.tipo = new SelectList(db.TipoUsuario, "id_tipousuario", "nombretipo");
@@ -92,7 +91,7 @@ namespace TicketManzano.Controllers
             }
         }
 
-
+       
         public ActionResult Edit(int? id)
         {
 
@@ -111,7 +110,7 @@ namespace TicketManzano.Controllers
             return Json("");
         }
 
-
+      
         public ActionResult Delete(int? id)
         {
             if (id != null)
@@ -142,35 +141,3 @@ namespace TicketManzano.Controllers
     }
 }
 
-
-
-//        public ActionResult Delete(int? id)
-//        {
-//            var usuario = db.Usuarios.Find(id);
-//            return PartialView("_Delete", usuario);
-//        }
-//        [HttpPost]
-//        public ActionResult Eliminar(int id)
-//        {
-//            var usuario = db.Usuarios.Find(id);
-
-//            try
-//            {
-
-//                if (usuario != null)
-//                {
-//                    db.Usuarios.Remove(usuario);
-//                    db.SaveChanges();
-//                    return Json("");
-//                }
-//            }
-//            catch (Exception)
-//            {
-//                return Json("No se ha podido eliminar el Usuario");
-//            }
-//            return Json("No se puede eliminar un usuario que este asignado");
-//        }
-
-
-//    }
-//}

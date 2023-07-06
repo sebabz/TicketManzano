@@ -8,7 +8,7 @@ using TicketManzano.Models;
 
 namespace TicketManzano.Controllers
 {
-
+    
     public class TipousuarioController : Controller
     {
         private HelpdeskManzanoEntities db = new HelpdeskManzanoEntities();

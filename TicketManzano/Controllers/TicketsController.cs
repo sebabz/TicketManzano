@@ -5,9 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TicketManzano.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace TicketManzano.Controllers
 {
+    
     public class TicketsController : Controller
     {
         private HelpdeskManzanoEntities db = new HelpdeskManzanoEntities();
@@ -34,8 +37,14 @@ namespace TicketManzano.Controllers
         {
             try
             {
+                string destinatario = Session["email"] as string; 
                 db.Tickets.Add(tickets);
                 db.SaveChanges();
+
+                // Enviar correo electrónico al usuario
+                EnviarCorreoElectronico(tickets.IDTicket);
+
+
                 return Json("");
             }
 
@@ -45,6 +54,36 @@ namespace TicketManzano.Controllers
                 return Json("Ha ocurrido un error, intentelo mas tarde.");
             }
         }
+
+        private void EnviarCorreoElectronico(int ticketId)
+        {
+            try
+            {
+                Tickets ticket = db.Tickets.Find(ticketId);
+                string destinatario = Session["email"] as string;
+
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("ticketsmanzano@outlook.com");
+                message.To.Add(destinatario);
+                message.Subject = "Nuevo ticket creado";
+                message.Body = "Se ha creado un nuevo ticket con el ID: " + ticket.IDTicket;
+
+                SmtpClient smtpClient = new SmtpClient();
+                smtpClient.Host = "smtp-mail.outlook.com";
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = true;
+                smtpClient.Credentials = new NetworkCredential("ticketsmanzano@outlook.com", "manzano1925");
+                
+
+                smtpClient.Send(message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al enviar el correo electrónico: " + ex.Message);
+            }
+        }
+
 
 
         public ActionResult Edit(int? id)
@@ -93,7 +132,7 @@ namespace TicketManzano.Controllers
 
             catch (Exception)
             {
-                return Json("No se puede eliminar un tipo asignado a un Usuario.");
+                return Json("No se puede eliminar el ticket.");
             }
         }
 
