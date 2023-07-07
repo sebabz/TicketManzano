@@ -13,12 +13,12 @@ namespace TicketManzano.Controllers
     {
         private HelpdeskManzanoEntities db = new HelpdeskManzanoEntities();
         // GET: Usuario
-        [AllowAnonymous]
+        
         public ActionResult Login()
         {
             return View();
         }
-        [AllowAnonymous]
+       
         [HttpPost]
         public ActionResult Login(String email, string pass)
         {
@@ -32,22 +32,15 @@ namespace TicketManzano.Controllers
                     Session["email"] = usuario.CorreoElectronico;
                     Session["idusuario"] = usuario.IDUsuario;
 
-                    //Session["idusuario"] = usuario.id_usuario;
-                    //Session["idTipoUsuario"] = usuario.TipoUsuario.id_tipo;
-                    //Session["EstadoUsuario"] = usuario.Estado.nombre;
-                    //if (usuario.== "Suspendido")
-                    //{
-
-                    //    return RedirectToAction("Login", "Usuarios");
-                    //}
+                
                     return RedirectToAction("Create", "Tickets");
                 }
+                
             }
-
 
             return View();
         }
-        [AllowAnonymous]
+        
         public ActionResult Logout()
         {
             Session.Clear();
