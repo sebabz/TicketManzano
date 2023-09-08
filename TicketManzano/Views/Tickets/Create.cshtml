@@ -16,7 +16,7 @@
                     <h5 class="card-title">Creación Ticket de Atención</h5>
 
                     <!-- General Form Elements -->
-                    <form>
+                    <form enctype="multipart/form-data">
 
                         <input type="hidden" id="idusuario" value="@Session["idusuario"]" />
 
@@ -59,7 +59,7 @@
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-3 col-form-label">Evidencia:</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="file" id="formFile">
+                                <input class="form-control" type="file" id="formFile" name="formFile">
                             </div>
                         </div>
 
@@ -92,12 +92,21 @@
 
 
 
-    $('#guardar').click(function (e) {
+
+     @*$('#guardar').click(function (e) {
         e.preventDefault();
         let error = '';
 
-       if ($('#email').val() === '')
-            error += 'Debe ingresar un correo \n';
+
+
+        if ($('#asunto').val() === '')
+            error += 'Debe ingresar un asunto \n';
+
+        if ($('#prioridad').val() === '')
+            error += 'Debe ingresar una prioridad \n';
+
+        if ($('#estado').val() === '')
+            error += 'Debe ingresar un estado \n';
 
 
 
@@ -144,7 +153,72 @@
                 }
             });
         }
-    });
+    });*@
+
+    $('#guardar').click(function (e) {
+    e.preventDefault();
+    let error = '';
+
+    if ($('#asunto').val() === '')
+        error += 'Debe ingresar un asunto \n';
+
+    if ($('#prioridad').val() === '')
+        error += 'Debe ingresar una prioridad \n';
+
+    if ($('#estado').val() === '')
+        error += 'Debe ingresar un estado \n';
+
+    // Obtener el archivo seleccionado
+    var fileInput = $('#formFile')[0];
+    var file = fileInput.files[0];
+
+    if (file == null) {
+        error += 'Debe seleccionar un archivo \n';
+    }
+
+    if (error !== '') {
+        swal('Error de validación', error, 'error');
+    } else {
+        // Crear un objeto FormData para enviar datos y archivos al controlador
+        var formData = new FormData();
+        formData.append('formFile', file);
+        formData.append('IDUsuario', $('#idusuario').val());
+        formData.append('Descripcion', $('#descripcion').val().trim());
+        formData.append('FechaCreacion', fecha);
+        formData.append('IDAsunto', $('#asunto').val().trim());
+        formData.append('IDEstado', $('#estado').val());
+        formData.append('IDPrioridad', $('#prioridad').val());
+
+        // Realizar la solicitud AJAX utilizando FormData
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Create")',
+            data: formData,
+            processData: false, // No procesar los datos
+            contentType: false, // No establecer el tipo de contenido
+            success: function (ok) {
+                if (ok === '') {
+                    swal({
+                        title: 'Creación de Ticket',
+                        text: 'Los datos se han guardado con éxito!',
+                        icon: 'success',
+                        button: 'Cerrar',
+                        closeOnClickOutside: false,
+                    }).then(function (isConfirm) {
+                        if (isConfirm) {
+                            location.reload(); // Recargar la página
+                        }
+                    });
+                } else {
+                    swal('Error', ok, 'error');
+                }
+            }
+        });
+    }
+});
+
+
+
     $('#limpiar').click(function () {
         limpiar();
     });

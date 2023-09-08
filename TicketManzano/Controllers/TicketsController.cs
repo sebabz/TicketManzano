@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using TicketManzano.Models;
 using System.Net.Mail;
 using System.Net;
+using System.IO;
 
 namespace TicketManzano.Controllers
 {
@@ -33,11 +34,25 @@ namespace TicketManzano.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Tickets tickets)
+        public ActionResult Create(Tickets tickets, HttpPostedFileBase formFile)
         {
             try
             {
-                string destinatario = Session["email"] as string; 
+
+                string destinatario = Session["email"] as string;
+
+                if (formFile != null && formFile.ContentLength > 0)
+                {
+                    // Guarda la imagen en el servidor
+                    string fileName = Path.GetFileName(formFile.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+                    formFile.SaveAs(filePath);
+
+                    // Guarda la ruta de la imagen en el modelo de ticket
+                    tickets.RutaImagen = filePath;
+                }
+
+
                 db.Tickets.Add(tickets);
                 db.SaveChanges();
 
@@ -134,6 +149,28 @@ namespace TicketManzano.Controllers
             {
                 return Json("No se puede eliminar el ticket.");
             }
+        }
+
+        public ActionResult DownloadImage(int id)
+        {
+            var ticket = db.Tickets.Find(id);
+            if (ticket != null)
+            {
+                // Obtén la ruta de la imagen desde la base de datos
+                string imagePath = ticket.RutaImagen;
+
+                if (!string.IsNullOrEmpty(imagePath) && System.IO.File.Exists(imagePath))
+                {
+                    // Obtén el nombre de archivo de la ruta de la imagen
+                    string fileName = Path.GetFileName(imagePath);
+
+                    // Devuelve la imagen como un archivo descargable
+                    return File(imagePath, "image/jpeg", fileName);
+                }
+            }
+
+            // Si no se encuentra la imagen, puedes redirigir o mostrar un mensaje de error
+            return RedirectToAction("Index"); // o mostrar un mensaje de error
         }
 
 

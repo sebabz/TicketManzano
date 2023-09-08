@@ -38,47 +38,57 @@
             </th>
 
             <th>
+                Evidencia
+            </th>
+
+            <th>
                 Acciones
             </th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuarios.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AsuntoTickets.NombreAsunto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrioridadTickets.NombrePrioridad)
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Usuarios.Apellido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AsuntoTickets.NombreAsunto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaCreacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PrioridadTickets.NombrePrioridad)
+    </td>
 
-            <td>
-                <button class="btn btn-warning" data-toggle="modal"
-                        data-url="@Url.Action("Edit","AsuntoTickets",new { id = item.IDAsunto })">
-                    <i class="fa fa-edit"></i> Editar
-                </button>
-                <button class="btn btn-danger" data-toggle="modal"
-                        data-url="@Url.Action("Delete","AsuntoTickets", new { id = item.IDAsunto })">
-                    <i class="fa fa-trash"></i> Eliminar
-                </button>
-            </td>
+    <td>
+        <a href="@Url.Action("DownloadImage", "Tickets", new { id = item.IDTicket })">
+            <i class="fa fa-download"></i> Descargar Imagen
+        </a>
+    </td>
+
+    <td>
+        <button class="btn btn-warning" data-toggle="modal"
+                data-url="@Url.Action("Edit","Tickets",new { id = item.IDTicket })">
+            <i class="fa fa-edit"></i> Editar
+        </button>
+        <button class="btn btn-danger" data-toggle="modal"
+                data-url="@Url.Action("Delete","Tickets", new { id = item.IDTicket })">
+            <i class="fa fa-trash"></i> Eliminar
+        </button>
+    </td>
 
 
 
 
-        </tr>
+</tr>
     }
 
 </table>
