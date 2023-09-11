@@ -69,8 +69,13 @@
     </td>
 
     <td>
+        @*<button class="btn btn-info" data-toggle="modal"
+                data-url="@Url.Action("DownloadImage", "Tickets", new { id = item.IDTicket })">
+            <i class="fa fa-download"></i>
+        </button>*@
+
         <a href="@Url.Action("DownloadImage", "Tickets", new { id = item.IDTicket })">
-            <i class="fa fa-download"></i> 
+            <i class="fa fa-download"></i>
         </a>
     </td>
 

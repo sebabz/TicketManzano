@@ -43,6 +43,18 @@ namespace TicketManzano.Controllers
 
                 if (formFile != null && formFile.ContentLength > 0)
                 {
+                    if (formFile.ContentType != "image/jpeg" &&
+                formFile.ContentType != "image/jpg" &&
+                formFile.ContentType != "image/png" &&
+                formFile.ContentType != "image/gif" &&
+                formFile.ContentType != "application/pdf")
+                    {
+                        return Json("El archivo debe ser una imagen (JPG, JPEG, PNG, GIF) o un archivo PDF");
+                    }
+
+
+
+
                     // Guarda la imagen en el servidor
                     string fileName = Path.GetFileName(formFile.FileName);
                     string filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);

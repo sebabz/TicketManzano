@@ -64,14 +64,19 @@
                         </div>
 
 
-
-                        <div class="text-center">
+                        <div class="text-center" style="text-align: right;" margin-right: 10px;">
                             <input type="button" value="Guardar" id="guardar" class="btn btn-primary" />
+                            <input type="button" value="Limpiar" id="limpiar" class="btn btn-secondary" />
                         </div>
 
+
+
                     </form><!-- End General Form Elements -->
+
                 </div>
+
             </div>
+
         </div>
     </div>
 </section>
@@ -174,7 +179,20 @@
 
     if (file == null) {
         error += 'Debe seleccionar un archivo \n';
-    }
+        }
+
+    if (file) {
+            var allowedExtensions = ["jpg", "jpeg", "png", "gif", "pdf"];
+            var fileExtension = file.name.split('.').pop().toLowerCase();
+
+            if (allowedExtensions.indexOf(fileExtension) === -1) {
+                error += 'El archivo debe ser una imagen (JPG, JPEG, PNG, GIF) o un archivo PDF \n';
+            }
+        } else {
+            error += 'Debe seleccionar un archivo \n';
+        }
+
+
 
     if (error !== '') {
         swal('Error de validación', error, 'error');
@@ -228,12 +246,12 @@
 
     function limpiar() {
 
-        $('#nombre').val('');
-        $('#apellido').val('');
-
-        $('#email').val('');
-        $('#pass').val('');
-        $('#tipo').select2("val", "");
+     
+        $('#asunto').val('');
+        $('#prioridad').val('');
+        $('#estado').val('');
+        $('#descripcion').val('');
+        $('#descripcion').select2("val", "");
 
     }
 </script>

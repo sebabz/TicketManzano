@@ -28,11 +28,13 @@ namespace TicketManzano.Controllers
                 var usuario = db.Usuarios.FirstOrDefault(u => u.CorreoElectronico.Equals(email) && u.Password.Equals(pass));
                 if (usuario != null)
                 {
-
+                    Session["Nombre"] = usuario.Nombre;
+                    Session["Apellido"] = usuario.Apellido;
                     Session["email"] = usuario.CorreoElectronico;
                     Session["idusuario"] = usuario.IDUsuario;
+                    Session["tipousuario"] = usuario.TipoUsuario.nombretipo;
 
-                
+
                     return RedirectToAction("Create", "Tickets");
                 }
                 
